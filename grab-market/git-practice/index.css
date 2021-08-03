@@ -6,9 +6,9 @@
 #header {
     width: 100%;
     height: 64px;
-    background-color: green;
     display: flex;
-    justify-content: center;
+    justify-content: center;    
+    border-bottom: solid 1px gray;
 }
 
 #header-area {
@@ -16,7 +16,6 @@
     height: 100%;
     display: flex;
     align-items: center;
-    background-color: pink;
 }
 
 #header-area > img {
@@ -27,8 +26,20 @@
 #body {
     width: 1024px;
     min-height: 100vh;
-    background-color: blue;
     margin: 0 auto;
+}
+
+#banner {
+    height: 300px;
+}
+
+#banner > img {
+    width: 100%;
+    height: 300px;
+}
+
+h1 {
+    margin-top: 16px;
 }
 
 #footer {
