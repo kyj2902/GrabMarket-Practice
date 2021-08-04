@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="index.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>Practice</title>
 </head>
 <body>
@@ -27,41 +28,30 @@
     </div>
 </body>
 <script>
-    var products = [{
-        name : '농구공',
-        price : 100000,
-        seller : '조던',
-        imageUrl : "images/products/basketball1.jpeg"
-    }, {
-        name : '축구공',
-        price : 50000,
-        seller : '메시',
-        imageUrl : "images/products/soccerball1.jpg"
-    }, {
-        name : '키보드',
-        price : 10000,
-        seller : '그랩',
-        imageUrl : "images/products/keyboard1.jpg"
-    }]
-
-    let productsHtml = "";
-    for(var i = 0; i < products.length; i++) {
-        var product = products[i];
-        productsHtml += '<div class="product-card">' +
-                '<div>' +
-                    '<img class="product-img" src="' + product.imageUrl + '">' +
-                '</div>' +
-                '<div class="product-contents">' +
-                    '<span class="product-name">' + product.name + '</span>' +
-                    '<span class="product-price">' + product.price + '원</span>' +
-                    '<div class="product-seller">' +
-                        '<img class="product-avatar" src="images/icons/avatar.png">' +
-                        '<span>'+ product.seller + '</span>' +
+    axios.get('https://8ea92b0d-c092-4c6f-b999-f3fc6b941a0e.mock.pstmn.io/practice_products').then(function(result){
+        console.log('통신 결과 : ', result);
+        let productsHtml = "";
+        const products = result.data.products;
+        for(var i = 0; i < products.length; i++) {
+            var product = products[i];
+            productsHtml += '<div class="product-card">' +
+                    '<div>' +
+                        '<img class="product-img" src="' + product.imageUrl + '">' +
                     '</div>' +
-                '</div>' +
-            '</div>'
-    }
+                    '<div class="product-contents">' +
+                        '<span class="product-name">' + product.name + '</span>' +
+                        '<span class="product-price">' + product.price + '원</span>' +
+                        '<div class="product-seller">' +
+                            '<img class="product-avatar" src="images/icons/avatar.png">' +
+                            '<span>'+ product.seller + '</span>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>'
+        }
 
     document.querySelector("#product-list").innerHTML = productsHtml;
+    }).catch(function(error){
+        console.log('에러 발생 : ', error);
+    });
 </script>
 </html>
